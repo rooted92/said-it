@@ -17,9 +17,15 @@ app.get('/dogs', (req, res) => {
     res.send('Woof');
 });
 
+app.get('/dogs/:breed', (req, res) => {
+    let { breed } = req.params;
+    console.log(breed);
+    res.send(`<h1>You are on the breeds subreddit: ${breed}`);
+})
+
 app.get('/search', (req, res) => {
-    let {q} = req.query;
-    if(!q) {
+    let { q } = req.query;
+    if (!q) {
         res.send('Nothing found if nothing searched.')
     }
     res.send(`<h1>Search results for ${q}</h1>`)
@@ -31,6 +37,6 @@ app.get('/search', (req, res) => {
 //     res.send('<h1>Hello World</h1>');
 // });
 
-app.listen(3000, () => {    
+app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
