@@ -11,6 +11,11 @@ app.get('/', (request, response) => {
     response.render('home.ejs');
 });
 
+app.get('/r/:saidit', (request, response) => {
+    const { saidit } = request.params;
+    response.render('saidit.ejs', { saidit });
+})
+
 app.get('/random', (request, response) => {
     const number = Math.floor(Math.random() * 10) + 1;
     response.render('random.ejs', { randomNumber: number });

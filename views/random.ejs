@@ -11,6 +11,11 @@
     <h1>
         Your random number is: <%= randomNumber %>
     </h1>
+    <p>
+        <!-- <% %> is a special tag that allows us to run JavaScript code in our EJS files. In this case, we're using it to display the value of the randomNumber variable. -->
+        Your number is...
+        <%= randomNumber % 2 === 0 ? 'Even' : 'Odd' %>
+    </p>
 </body>
 
 </html>
