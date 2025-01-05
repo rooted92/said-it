@@ -11,6 +11,11 @@ app.get('/', (request, response) => {
     response.render('home.ejs');
 });
 
+app.get('/random', (request, response) => {
+    const number = Math.floor(Math.random() * 10) + 1;
+    response.render('random.ejs', { randomNumber: number });
+})
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
