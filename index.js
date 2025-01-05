@@ -11,6 +11,12 @@ app.get('/', (request, response) => {
     response.render('home.ejs');
 });
 
+app.get('/cats', (request, response) => {
+    console.log("cats page");
+    const cats = ['Blue', 'Rocket', 'Monty', 'Steph', 'Winston'];
+    response.render('cats.ejs', { cats });
+});
+
 app.get('/r/:saidit', (request, response) => {
     const { saidit } = request.params;
     response.render('saidit.ejs', { saidit });
