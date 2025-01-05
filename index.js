@@ -6,8 +6,6 @@ const path = require('path');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views')) // this changes the cwd to the directory where index is located
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 app.get('/', (request, response) => {
     console.log("home page");
