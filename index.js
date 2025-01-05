@@ -1,4 +1,5 @@
 const express = require('express');
+const saiditData = require('./data.json');
 
 const app = express();
 const path = require('path');
@@ -19,7 +20,8 @@ app.get('/cats', (request, response) => {
 
 app.get('/r/:saidit', (request, response) => {
     const { saidit } = request.params;
-    response.render('saidit.ejs', { saidit });
+    const data = saiditData[saidit];
+    response.render('saidit.ejs', { ...data }); // spread the data object so that we can access the properties directly
 })
 
 app.get('/random', (request, response) => {
