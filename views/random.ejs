@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/head') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random</title>
-</head>
 
-<body>
+    <%- include('partials/navbar') %>
     <h1>
         Your random number is: <%= randomNumber %>
     </h1>
@@ -16,6 +10,4 @@
         Your number is...
         <%= randomNumber % 2 === 0 ? 'Even' : 'Odd' %>
     </p>
-</body>
-
-</html>
+    <%- include('partials/footer') %>
