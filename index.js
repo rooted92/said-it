@@ -6,6 +6,8 @@ const path = require('path');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views')) // this changes the cwd to the directory where index is located
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.get('/', (request, response) => {
     console.log("home page");
@@ -21,7 +23,12 @@ app.get('/cats', (request, response) => {
 app.get('/r/:saidit', (request, response) => {
     const { saidit } = request.params;
     const data = saiditData[saidit];
-    response.render('saidit.ejs', { ...data }); // spread the data object so that we can access the properties directly
+    if (!data) {
+        response.status(404);
+        response.render('notfound.ejs', { saidit });
+    } else {
+        response.render('saidit.ejs', { ...data }); // spread the data object so that we can access the properties directly
+    }
 })
 
 app.get('/random', (request, response) => {
