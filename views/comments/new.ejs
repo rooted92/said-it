@@ -3,6 +3,7 @@
 
         <div class="container">
             <h1 class="my-4">Create a New Comment</h1>
+            <a href="/comments" class="btn btn-secondary my-2">Back to all comments</a>
             <form action="/comments" method="POST">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
@@ -14,7 +15,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-            <a href="/comments" class="btn btn-secondary mt-3">Back to all comments</a>
         </div>
 
         <%- include('../partials/footer') %>

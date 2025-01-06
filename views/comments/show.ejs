@@ -15,9 +15,12 @@
                     </footer>
                 </div>
             </div>
-            <div class="text-center mt-3 d-flex gap-3">
+            <div class="text-center mt-3 d-flex justify-content-center gap-3">
                 <a href="/comments" class="btn btn-primary">Back to all comments</a>
                 <a href="/comments/<%= comment.id %>/edit" class="btn btn-warning">Edit Comment</a>
+                <form action='/comments/<%= comment.id %>?_method=DELETE' method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
             </div>
         </div>
 

@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true })); // this is needed to parse the 
 app.use(express.json()); // this is needed to parse the form data
 app.use(methodOverride('_method'));
 
-const comments = [
+let comments = [
     {
         id: uuid(),
         username: 'Todd',
@@ -160,6 +160,12 @@ app.patch('/comments/:id', (request, response) => {
     const foundComment = comments.find(c => c.id === id);
     foundComment.comment = newCommentText;
     console.log(foundComment);
+    response.redirect('/comments');
+});
+
+app.delete('/comments/:id', (request, response) => {
+    const { id } = request.params;
+    comments = comments.filter(c => c.id !== id);
     response.redirect('/comments');
 });
 

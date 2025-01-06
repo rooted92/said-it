@@ -3,6 +3,7 @@
 
         <div class="container">
             <h1>All Comments</h1>
+            <a href="/comments/new" class="btn btn-dark my-2">Add a New Comment</a>
             <div class="d-flex flex-wrap gap-3">
                 <% for (comment of comments) { %>
                     <a href="/comments/<%= comment.id %>" class="card my-2" style="width: 18rem; text-decoration: none; color: inherit;">
