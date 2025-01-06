@@ -3,30 +3,87 @@ const saiditData = require('./data.json');
 
 const app = express();
 const path = require('path');
+const { v4: uuid } = require('uuid');
+const methodOverride = require('method-override');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views')) // this changes the cwd to the directory where index is located
 app.use('/static', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 app.use(express.urlencoded({ extended: true })); // this is needed to parse the form data
 app.use(express.json()); // this is needed to parse the form data
+app.use(methodOverride('_method'));
 
 const comments = [
     {
+        id: uuid(),
         username: 'Todd',
         comment: 'lol that is so funny!'
     },
     {
+        id: uuid(),
         username: 'Skyler',
         comment: 'I like to go birdwatching with my dog'
     },
     {
+        id: uuid(),
         username: 'Sk8rBoi',
         comment: 'Plz delete your account, Todd'
     },
     {
+        id: uuid(),
         username: 'onlysayswoof',
-        comment: 'woof woof woof'       
+        comment: 'woof woof woof'
     },
+    {
+        id: uuid(),
+        username: 'Alice',
+        comment: 'This is a great post!'
+    },
+    {
+        id: uuid(),
+        username: 'Bob',
+        comment: 'I totally agree with Alice.'
+    },
+    {
+        id: uuid(),
+        username: 'Charlie',
+        comment: 'Interesting perspective.'
+    },
+    {
+        id: uuid(),
+        username: 'Dave',
+        comment: 'Thanks for sharing!'
+    },
+    {
+        id: uuid(),
+        username: 'Eve',
+        comment: 'I learned something new today.'
+    },
+    {
+        id: uuid(),
+        username: 'Frank',
+        comment: 'Can you elaborate more on this topic?'
+    },
+    {
+        id: uuid(),
+        username: 'Grace',
+        comment: 'I have a different opinion.'
+    },
+    {
+        id: uuid(),
+        username: 'Heidi',
+        comment: 'Well written!'
+    },
+    {
+        id: uuid(),
+        username: 'Ivan',
+        comment: 'I found this very helpful.'
+    },
+    {
+        id: uuid(),
+        username: 'Judy',
+        comment: 'Looking forward to more posts like this.'
+    }
 ];
 
 
@@ -79,7 +136,30 @@ app.get('/comments/new', (request, response) => {
 // This is the route that will create a new comment, CREATE
 app.post('/comments', (request, response) => {
     const { username, comment } = request.body;
-    comments.push({ username, comment });
+    comments.push({ id: uuid(), username, comment });
+    response.redirect('/comments');
+});
+
+// This route will display a specific comment, READ
+app.get('/comments/:id', (request, response) => {
+    const { id } = request.params;
+    const comment = comments.find(c => c.id === id);
+    response.render('comments/show.ejs', { comment });
+});
+
+app.get('/comments/:id/edit', (request, response) => {
+    const { id } = request.params;
+    const comment = comments.find(c => c.id === id);
+    response.render('comments/edit.ejs', { comment });
+});
+
+app.patch('/comments/:id', (request, response) => {
+    const { id } = request.params;
+    const newCommentText = request.body.comment;
+    console.log(newCommentText);
+    const foundComment = comments.find(c => c.id === id);
+    foundComment.comment = newCommentText;
+    console.log(foundComment);
     response.redirect('/comments');
 });
 

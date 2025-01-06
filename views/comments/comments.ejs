@@ -5,18 +5,14 @@
             <h1>All Comments</h1>
             <div class="d-flex flex-wrap gap-3">
                 <% for (comment of comments) { %>
-                    <div class="card my-2" style="width: 18rem;">
+                    <a href="/comments/<%= comment.id %>" class="card my-2" style="width: 18rem; text-decoration: none; color: inherit;">
                         <div class="card-body">
-                            <h5 class="card-title
-                            ">
+                            <h5 class="card-title">
                                 <%= comment.username %>
                             </h5>
-                            <p class="card-text">
-                                <%= comment.comment %>
-                            </p>
                         </div>
-                    </div>
-                    <% } %>
+                    </a>
+                <% } %>
             </div>
         </div>
 
