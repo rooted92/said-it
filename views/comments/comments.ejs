@@ -1,0 +1,23 @@
+<%- include('../partials/head') %>
+    <%- include('../partials/navbar') %>
+
+        <div class="container">
+            <h1>All Comments</h1>
+            <div class="d-flex flex-wrap gap-3">
+                <% for (comment of comments) { %>
+                    <div class="card my-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title
+                            ">
+                                <%= comment.username %>
+                            </h5>
+                            <p class="card-text">
+                                <%= comment.comment %>
+                            </p>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+
+        <%- include('../partials/footer') %>

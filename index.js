@@ -10,6 +10,25 @@ app.use('/static', express.static(path.join(__dirname, 'node_modules/bootstrap/d
 app.use(express.urlencoded({ extended: true })); // this is needed to parse the form data
 app.use(express.json()); // this is needed to parse the form data
 
+const comments = [
+    {
+        username: 'Todd',
+        comment: 'lol that is so funny!'
+    },
+    {
+        username: 'Skyler',
+        comment: 'I like to go birdwatching with my dog'
+    },
+    {
+        username: 'Sk8rBoi',
+        comment: 'Plz delete your account, Todd'
+    },
+    {
+        username: 'onlysayswoof',
+        comment: 'woof woof woof'       
+    },
+];
+
 
 app.get('/', (request, response) => {
     console.log("home page");
@@ -45,6 +64,23 @@ app.get('/tacos', (request, response) => {
 app.post('/tacos', (request, response) => {
     const { meat, qty } = request.body;
     response.send(`Here are your ${qty} ${meat} tacos!`);
+});
+
+// This is the route that will display the comments page, READ
+app.get('/comments', (request, response) => {
+    response.render('comments/comments.ejs', { comments });
+});
+
+// This is the route that will display the form to add a new comment, CREATE
+app.get('/comments/new', (request, response) => {
+    response.render('comments/new.ejs');
+});
+
+// This is the route that will create a new comment, CREATE
+app.post('/comments', (request, response) => {
+    const { username, comment } = request.body;
+    comments.push({ username, comment });
+    response.redirect('/comments');
 });
 
 app.listen(3000, () => {
