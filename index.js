@@ -7,7 +7,8 @@ const path = require('path');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views')) // this changes the cwd to the directory where index is located
 app.use('/static', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
-
+app.use(express.urlencoded({ extended: true })); // this is needed to parse the form data
+app.use(express.json()); // this is needed to parse the form data
 
 
 app.get('/', (request, response) => {
@@ -39,6 +40,11 @@ app.get('/random', (request, response) => {
 
 app.get('/tacos', (request, response) => {
     response.render('tacos.ejs');
+});
+
+app.post('/tacos', (request, response) => {
+    const { meat, qty } = request.body;
+    response.send(`Here are your ${qty} ${meat} tacos!`);
 });
 
 app.listen(3000, () => {

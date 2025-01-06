@@ -1,8 +1,17 @@
 <%- include('partials/head') %>
-<%- include('partials/navbar') %>
-<form action="/tacos" method="GET">
-    <input type="text" name="meat" placeholder="Enter meat">
-    <input type="number" name="qty" placeholder="Quantity">
-    <button>Submit</button>
-</form>
-<%- include('partials/footer') %>
+    <%- include('partials/navbar') %>
+
+        <div class="container">
+            <form action="http://localhost:3000/tacos" method="GET" class="my-5">
+                <input type="text" name="meat" placeholder="Enter meat">
+                <input type="number" name="qty" placeholder="Quantity">
+                <button>Submit</button>
+            </form>
+            <form action="http://localhost:3000/tacos" method="POST">
+                <input type="text" name="meat" placeholder="Enter meat">
+                <input type="number" name="qty" placeholder="Quantity">
+                <button>Submit</button>
+            </form>
+        </div>
+
+        <%- include('partials/footer') %>
